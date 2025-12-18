@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <a href="/" class="back-link">Wróć</a>
+    <main>
+        <section>
+            <h1>Zaloguj się</h1>
+            <form action="/login" method="POST">
+                <input type="text" placeholder="Podaj nazwę swojego profilu" id="username" name="username" required>
+                <input type="password" placeholder="Podaj hasło" id="pass" name="pass" required>
+                <button type="submit">Zaloguj się</button>
+            </form>
+        </section>
+    </main>
+    <%- include('../partials/footer') %>
+</body>
+</html>

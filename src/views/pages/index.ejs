@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLX – ogłoszenia</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <% if(username != null){ %>
+        <%- include('../partials/loggedIn') %>
+    <%} else{%>
+        <%- include('../partials/header') %>
+    <%}%>
+
+    <main>
+        <% if(username != null){ %>
+            <section>
+                <h1>Witaj, <%= username %> 👋</h1>
+                <p>
+                    <a href="/userProducts/<%=username%>">Zarządzaj swoimi ogłoszeniami</a>
+                </p>
+            </section>
+        <% } %>
+
+        <section>
+            <h2>Sortowanie ogłoszeń</h2>
+            <form action="/sort/<%=username%>" method="post">
+                <select name="sortBy" required>
+                    <option disabled selected value>Wybierz sposób sortowania</option>
+                    <option value="seller">Nazwa użytkownika</option>
+                    <option value="createdAt">Data dodania</option>
+                    <option value="productName">Nazwa produktu</option>
+                </select>
+                <button>Sortuj</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Aktualne ogłoszenia</h2>
+            <div class="products-list">
+                <% products.forEach(product => { %>
+                    <article class="product-card">
+                        <div class="product-card__top">
+                            <h3 class="product-card__title"><%= product.productName %></h3>
+                            <span class="product-card__price"><%= product.productPrice %> zł</span><br>
+                            <span><%= product.productDescription %></span>
+                        </div>
+                        <p class="product-card__meta">
+                            <strong><%= product.seller %></strong>
+                            &nbsp;•&nbsp;
+                            <span><%= product.location %></span>
+                            <% if(product.seller != username && username != null){%>
+                                <a href="/buy/<%=product._id%>">Zamów</a><%}%>
+                        </p>
+                    </article>
+                <% }) %>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

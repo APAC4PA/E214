@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twoje ogłoszenia</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <a href="/" class="back-link">Wróć</a>
+
+    <main>
+        <section>
+            <h1>Twoje ogłoszenia</h1>
+            <div class="products-list">
+                <% products.forEach(product => { %>
+                    <article class="product-card">
+                        <div class="product-card__top">
+                            <h3 class="product-card__title"><%= product.productName %></h3>
+                            <span class="product-card__price"><%= product.productPrice %> zł</span>
+                            <span><%= product.productDescription %></span>
+                        </div>
+                        <p class="product-card__meta">
+                            <strong><%= product.seller %></strong>
+                            &nbsp;•&nbsp;
+                            <span><%= product.location %></span>
+                        </p>
+                        <div class="product-card__actions">
+                            <form action="/delete/<%=product._id%>" method="post">
+                                <button type="submit">Usuń</button>
+                            </form>
+                            <a href="/editProduct/<%=product._id%>" class="btn-secondary">Edytuj</a>
+                        </div>
+                    </article>
+                <% }) %>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,48 @@
+=====================================================================
+URUCHOMIENIE BAZY DANYCH MONGODB ZA POMOCĄ DOCKER
+=====================================================================
+
+Uruchom Docker i włącz terminal i wpisz tę komendę:
+---------------------------------------------------
+docker run -d --name mongo -p 27017:27017 mongo:6.0
+---------------------------------------------------
+
+W razie błędu usuń poprzedni kontener:
+---------------
+docker rm mongo
+---------------
+
+Albo użyj już istniejącego:
+------------------
+docker start mongo
+------------------
+
+=====================================================================
+PORTY I DANE LOGOWANIA
+=====================================================================
+
+PORTY:
+------
+- Port lokalny (host): 27017
+- Port Docker (container): 27017
+- Mapowanie: -p 27017:27017
+  * Lewy port (27017) - port na lokalnym komputerze
+  * Prawy port (27017) - port wewnątrz kontenera Docker
+
+DANE LOGOWANIA:
+---------------
+- Host: localhost
+- Port: 27017
+- Baza danych: olx (tworzona automatycznie)
+- Nazwa kontenera: mongo
+- Wersja MongoDB: 6.0
+- Connection String: mongodb://localhost:27017
+
+UWAGI:
+------
+- Baza danych i kolekcje zostaną utworzone automatycznie przy 
+  pierwszym dodaniu danych przez aplikację
+- Aplikacja łączy się z bazą "olx" automatycznie (zdefiniowane 
+  w pliku src/data/connection.js)
+
+=====================================================================

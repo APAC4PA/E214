@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj produkt</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <a href="/" class="back-link">Wróć</a>
+    <main>
+        <section>
+            <h1>Nowe ogłoszenie</h1>
+            <form action="/newProduct/<%=slug%>" method="POST">
+                <input type="text" placeholder="Podaj nazwę produktu" id="productName" name="productName" required>
+                <input type="number" placeholder="Podaj cenę produktu" id="productPrice" name="productPrice" required>
+                <input type="text" placeholder="Podaj opis produktu" id="productDescription" name="productDescription" required>
+                <button type="submit">Dodaj produkt</button>
+            </form>
+        </section>
+    </main>
+    <%- include('../partials/footer') %>
+</body>
+</html>
